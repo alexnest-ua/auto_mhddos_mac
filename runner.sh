@@ -2,7 +2,7 @@
 
 set -e 
 
-num=$(brew --version || true | grep -c "3.4.10")
+num=$(brew --version | grep -c "3.4.10") || true 
 echo -e "$num"
 if ((num == 1));
 then	
