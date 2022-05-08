@@ -11,9 +11,6 @@ echo -e "[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - Killing all old processes
 pkill -f runner.py || true
 echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[0;35mAll old processes with MHDDoS killed\033[0;0m\n"
 
-# git config --global --add safe.directory /home/${USER}/auto_mhddos_alexnest
-# git config --global --add safe.directory /home/${USER}/mhddos_proxy
-
 
 threads="${1:-1500}"
 if ((threads < 1000));
