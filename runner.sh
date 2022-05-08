@@ -12,6 +12,7 @@ fi
 
 brew install coreutils git python@3.10
 brew link --overwrite python@3.10
+echo 'export PATH="/usr/local/opt/python@3.10/bin:$PATH"' >> ~/.zshrc
 python3 -m pip install --upgrade setuptools
 
 cd ~
