@@ -9,13 +9,13 @@ then
 	echo -e "[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - Brew is the latest version"
 else
 	/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/${USER}/.zprofile
+	eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
 
 brew install coreutils git python@3.10
-brew link --overwrite python@3.10
-echo 'export PATH="/usr/local/opt/python@3.10/bin:$PATH"' >> ~/.zshrc
-python3 -m pip install --upgrade pip
+python3.10 -m pip install --upgrade pip
 
 cd ~
 rm -rf auto_mhddos_mac
@@ -92,7 +92,7 @@ do
 		echo -e "[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - Running up to date mhddos_proxy"
 	else
 		cd ~/mhddos_proxy
-		python3 -m pip install -r requirements.txt
+		python3.10 -m pip install -r requirements.txt
 		clear
 		echo -e "[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - Running updated mhddos_proxy"
 		sleep 3
@@ -129,7 +129,7 @@ do
     	echo -e "python3 runner.py $cmd_line --rpc $rpc -t $threads $vpn $debug"
             
     	cd ~/mhddos_proxy
-    	python3 runner.py $cmd_line --rpc $rpc -t $threads $vpn $debug&
+    	python3.10 runner.py $cmd_line --rpc $rpc -t $threads $vpn $debug&
 	PID="$!"
 	
     	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[42mAttack started successfully\033[0m\n"
