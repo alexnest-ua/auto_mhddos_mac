@@ -95,7 +95,7 @@ do
 
    	list_size=$(curl -s https://raw.githubusercontent.com/alexnest-ua/targets/main/targets_linux | grep "^[^#]" | wc -l | tr -d " |\n")
 
-	i=`expr $(shuf -i 1-$list_size -n 1) \* 60`
+	i=`expr $(shuf -i 1-$list_size -n 1)`
    	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - Random number(s): " $random_numbers "\n"
       
    	echo -e "\n I = $i"
