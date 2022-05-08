@@ -1,5 +1,19 @@
 #!/bin/bash
 
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew install coreutils
+brew install git
+brew install python@3.10
+python3 -m pip install --upgrade setuptools
+
+cd ~
+git clone https://github.com/alexnest-ua/auto_mhddos_mac
+git clone https://github.com/porthole-ascend-cinnamon/mhddos_proxy
+cd ~/mhddos_proxy
+echo -e "\n\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[0;33mInstalling latest requirements...\033[0;0m\n\n"
+sleep 2
+python3 -m pip install -r requirements.txt
+
 set -e 
 
 restart_interval="1200"
@@ -74,7 +88,7 @@ do
 	fi
 	
 	
-	cd ~/runner_for_mac
+	cd ~/auto_mhddos_mac
    	num=$(git pull | grep -c 'Already')
    	echo -e "$num"
    	
