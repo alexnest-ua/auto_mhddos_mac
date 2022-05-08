@@ -1,8 +1,6 @@
 #!/bin/bash
 
-set -e 
-
-num=$(brew --version | grep -c "3.4.10") || true 
+num=$(brew --version | grep -c "3.4.10")
 echo -e "$num"
 if ((num == 1));
 then	
