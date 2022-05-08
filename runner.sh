@@ -83,7 +83,7 @@ while [ 1 == 1 ]
 do	
 	cd ~/mhddos_proxy
 
-	num0=$(git pull | grep -c 'Already')
+	num0=$(git pull origin main | grep -c 'Already')
    	echo -e "$num0"
    	
    	if ((num0 == 1));
@@ -100,7 +100,7 @@ do
 	
 	
 	cd ~/auto_mhddos_mac
-   	num=$(git pull | grep -c 'Already' || true)
+   	num=$(git pull origin main | grep -c 'Already' || true)
    	echo -e "$num"
    	
    	if ((num == 1));
