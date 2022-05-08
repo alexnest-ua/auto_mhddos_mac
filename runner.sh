@@ -100,7 +100,7 @@ do
       
    	echo -e "\n I = $i"
     	# Filter and only get lines that not start with "#". Then get one target from that filtered list.
-    	cmd_line=$(awk 'NR=='"$i" <<< "$(curl -s https://raw.githubusercontent.com/alexnest-ua/targets/main/targets_linux | cat | grep "^[^#]")")
+    	cmd_line=$(curl -s https://raw.githubusercontent.com/alexnest-ua/targets/main/targets_linux | grep "^[^#]" | awk "NR==$i")
            
     	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - full cmd:\n"
     	echo -e "python3 runner.py $cmd_line --rpc $rpc -t $threads $debug"
