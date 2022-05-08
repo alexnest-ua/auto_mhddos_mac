@@ -81,7 +81,7 @@ do
 		echo -e "[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - Running up to date mhddos_proxy"
 	else
 		cd ~/mhddos_proxy
-		pip3 install -r requirements.txt
+		python3 -m pip install -r requirements.txt
 		clear
 		echo -e "[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - Running updated mhddos_proxy"
 		sleep 3
