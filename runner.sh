@@ -4,6 +4,7 @@ set -e
 
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 brew install coreutils git python@3.10
+brew link --overwrite python@3.10
 python3.10 -m pip install --upgrade setuptools
 
 cd ~
