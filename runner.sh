@@ -100,7 +100,7 @@ do
 	
 	
 	cd ~/auto_mhddos_mac
-   	num=$(git pull | grep -c 'Already')
+   	num=$(git pull | grep -c 'Already' || true)
    	echo -e "$num"
    	
    	if ((num == 1));
