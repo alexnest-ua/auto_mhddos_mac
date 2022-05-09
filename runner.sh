@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#check update
+
 set -e
 
 num=$(brew --version | grep -c "3.4.10" || true)
