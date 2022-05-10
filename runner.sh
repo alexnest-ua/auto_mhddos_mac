@@ -62,7 +62,7 @@ then
 fi
 
 debug="${3:-}"
-if [ "${debug}" != "--debug" ] && [ "${debug}" != "" ];
+if [ "${debug}" != "--debug" ] && [ "${debug}" != "" ] && [ "${debug}" != "--vpn" ];
 then
 	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[0;33mStarting with parameter --debug (--table is not supported in our script)\033[0;0m\n"
 	debug="--debug"
