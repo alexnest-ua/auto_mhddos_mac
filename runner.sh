@@ -150,12 +150,13 @@ do
     	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - full cmd:\n"
     	echo -e "python3 runner.py $cmd_line --rpc $rpc -t $threads $vpn $debug"
             
-    	cd ~/mhddos_proxy
-    	python3.10 runner.py $cmd_line --rpc $rpc -t $threads $vpn $debug&
-	PID="$!"
-	cd ~/proxy_finder
+    	cd ~/proxy_finder
     	python3.10 finder.py&
 	PID1="$!"
+	cd ~/mhddos_proxy
+    	python3.10 runner.py $cmd_line --rpc $rpc -t $threads $vpn $debug&
+	PID="$!"
+	
 	
     	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[42mAttack started successfully\033[0m\n"
 
