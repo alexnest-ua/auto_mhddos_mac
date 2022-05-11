@@ -22,7 +22,7 @@ runner.sh - ПОВНІСТЮ АВТООНОВЛЮВАНИЙ (оновлює ці
 # Запуск скрипта
 1) Заходимо в Launchpad, щоб відкрити термінал  
 ![image](https://user-images.githubusercontent.com/74729549/167318008-ec0e5caf-dc57-4d29-a352-8b41c49d4fe2.png)
-2) У пошуку вбиваємо terminal  
+2) У шукаємо terminal  
 ![image](https://user-images.githubusercontent.com/74729549/167318025-d7d89817-4e83-4118-8c35-fbf37e59fdea.png)
 3) Запускаємо Термінал  
 ![image](https://user-images.githubusercontent.com/74729549/167318042-f892bec6-7a8b-4ad7-aed1-f625f2e92fd4.png)
