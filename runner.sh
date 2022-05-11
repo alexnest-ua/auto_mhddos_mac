@@ -87,7 +87,15 @@ fi
 echo -e "[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[1;32mStarting attack with such parameters:  -t $threads --rpc $rpc $debug $vpn...\033[1;0m"
 sleep 7
 
-trap 'echo signal received!; kill "${PID}"; kill "${PID1}";  wait "${PID}"; wait "${PID1}"' SIGINT SIGTERM
+trap 'echo signal received!; kill "${PID}"; kill "${PID1}"; wait "${PID}"; wait "${PID1}"; ctrl_c' SIGINT SIGTERM
+
+function ctrl_c() {
+        echo "Exiting..."
+	sleep 3s
+	exit
+	echo "Exiting failed - close the window with terminal!!!"
+	sleep 60s
+}
 
 # Restarts attacks and update targets list every 20 minutes
 while [ 1 == 1 ]
