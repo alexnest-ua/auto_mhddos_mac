@@ -10,7 +10,7 @@ pkill -f runner.py || true
 pkill -f finder.py || true
 echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[0;35mAll old processes with ddos killed\033[0;0m\n"
 
-num=$(brew --version | grep -c "3.4.10" || true)
+num=$(brew --version | grep -E -c "3.4|3.5" || true)
 echo -e "$num"
 if ((num == 1));
 then	
