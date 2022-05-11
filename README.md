@@ -22,7 +22,7 @@ runner.sh - ПОВНІСТЮ АВТООНОВЛЮВАНИЙ (оновлює ці
 # Запуск скрипта
 1) Заходимо в Launchpad, щоб відкрити термінал  
 ![image](https://user-images.githubusercontent.com/74729549/167318008-ec0e5caf-dc57-4d29-a352-8b41c49d4fe2.png)
-2) У шукаємо terminal  
+2) Шукаємо terminal  
 ![image](https://user-images.githubusercontent.com/74729549/167318025-d7d89817-4e83-4118-8c35-fbf37e59fdea.png)
 3) Запускаємо Термінал  
 ![image](https://user-images.githubusercontent.com/74729549/167318042-f892bec6-7a8b-4ad7-aed1-f625f2e92fd4.png)
@@ -36,7 +36,7 @@ curl -LO https://raw.githubusercontent.com/alexnest-ua/auto_mhddos_mac/main/runn
   
 **!!!УВАГА!!!** runner.sh підтримує наступні параметри (САМЕ У ТАКОМУ ПОРЯДКУ ТА ЛИШЕ У ТАКІЙ КІЛЬКОСТІ(мінімум 2)), але можно і без них:  
 curl -LO https://raw.githubusercontent.com/alexnest-ua/auto_mhddos_mac/main/runner.sh && bash runner.sh [threads] [rpc] [debug] [vpn]  
-- threads - кількість потоків (але не менше 1000, та не більше 4000)
+- threads - кількість потоків (але не менше 1000, та не більше 3000)
 - rpc - кількість запитів на проксі перед відправкою на ціль (але не менше 1000, та не більше 2500)
 - debug - можливість дебагу (якщо хочете бачити повний інфу по атаці - у 4-ий параметр додайте --debug)
 - vpn - використання вашого ІР у атаці разом з проксі
