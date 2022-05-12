@@ -48,11 +48,11 @@ ulimit -n 1048576
 
 
 
-threads="${1:-1000}"
-if ((threads < 500));
+threads="${1:-500}"
+if ((threads < 250));
 then
-	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[0;33m$threads is too LOW amount of threads - attack will be started with 500 threads\033[0;0m\n"
-	threads=500
+	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[0;33m$threads is too LOW amount of threads - attack will be started with 250 threads\033[0;0m\n"
+	threads=250
 elif ((threads > 3000));
 then
 	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[0;33m$threads is too HIGH amount of threads - attack will be started with 3000 threads\033[0;0m\n"
