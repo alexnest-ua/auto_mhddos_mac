@@ -33,7 +33,7 @@ cd ~
 curl -LO https://raw.githubusercontent.com/alexnest-ua/auto_mhddos_mac/main/runner.sh && bash runner.sh
 ```
     
-* Буде запущено атаку з наступними параметрами за замовчуванням: threads=1500 rpc=1000 debug="" vpn=""(1500 потоків, 1000 запитів на проксі перед відправкою на ціль, без дебагу, без атаки через ваш ІР) та автоматично запустить паралельно наш [proxy_finder](https://github.com/porthole-ascend-cinnamon/proxy_finder)  
+* Буде запущено атаку з наступними параметрами за замовчуванням: threads=1000 rpc=1000 debug="" vpn=""(1000 потоків, 1000 запитів на проксі перед відправкою на ціль, без дебагу, без атаки через ваш ІР) та автоматично запустить паралельно наш [proxy_finder](https://github.com/porthole-ascend-cinnamon/proxy_finder)  
   
 **Далі можна просто ЗГОРНУТИ вікно і воно буде працювати нескінченно в фоні**  
 ***щоб зупинити процес - натисніть Ctrl+C (або якщо не спрацює просто закрийте вікно з атакою)***  
@@ -52,10 +52,10 @@ curl -LO https://raw.githubusercontent.com/alexnest-ua/auto_mhddos_mac/main/runn
 
 **ви можете змінювати параметри на будь-які інші значення, але я рекомендую саме ті, що за замовчуванням.**  
 **також можете додавати **3-тим** параметром --debug, що слідкувати за ходом атаки, та **4-тим** параметром --vpn, щоб атакувати ще й через свій ІР разом з проксі**  
-*наприклад команда з 2500 threads 2000 rpc дебагом та доп. атакою через ваш ІР*  
+*наприклад команда з 2000 threads 2000 rpc дебагом та доп. атакою через ваш ІР*  
 ```shell
 cd ~
-curl -LO https://raw.githubusercontent.com/alexnest-ua/auto_mhddos_mac/main/runner.sh && bash runner.sh 2500 2000 --debug --vpn
+curl -LO https://raw.githubusercontent.com/alexnest-ua/auto_mhddos_mac/main/runner.sh && bash runner.sh 2000 2000 --debug --vpn
 ```
 * Приклад **БЕЗ** параметру --debug:  
 ![image](https://user-images.githubusercontent.com/74729549/168069087-1d1d641e-4ded-43b8-99e4-1d0688e3d2f0.png)  
@@ -64,6 +64,4 @@ curl -LO https://raw.githubusercontent.com/alexnest-ua/auto_mhddos_mac/main/runn
 ![image](https://user-images.githubusercontent.com/74729549/168068441-0be60ba6-49c7-41de-a89c-c50410a50fef.png)  
   
 Далі кожні 5 хвилин воно буде оновлювати список проксі, а кожні 20 хвилин - цілі атаки та перевіряти наявність оновлення (та встановлювати його якщо воно є)  
-
-#test
 
