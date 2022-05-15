@@ -25,6 +25,7 @@ fi
 brew install coreutils git python@3.10
 brew link --overwrite python@3.10
 python3.10 -m pip install --upgrade pip
+python3.10 -m pip install uvloop
 
 cd ~
 rm -rf auto_mhddos_mac
