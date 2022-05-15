@@ -44,7 +44,7 @@ python3.10 -m pip install -r requirements.txt
 
 restart_interval="1200"
 
-ulimit -n 1048576
+ulimit -n 1048576 || true
 
 
 
