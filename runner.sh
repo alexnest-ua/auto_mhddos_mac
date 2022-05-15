@@ -49,26 +49,26 @@ ulimit -n 1048576
 
 
 
-threads="${1:-500}"
-if ((threads < 250));
+threads="${1:-2000}"
+if ((threads < 1000));
 then
-	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[0;33m$threads is too LOW amount of threads - attack will be started with 250 threads\033[0;0m\n"
-	threads=250
-elif ((threads > 3000));
+	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[0;33m$threads is too LOW amount of threads - attack will be started with 1000 threads\033[0;0m\n"
+	threads=1000
+elif ((threads > 10000));
 then
-	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[0;33m$threads is too HIGH amount of threads - attack will be started with 3000 threads\033[0;0m\n"
-	threads=3000
+	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[0;33m$threads is too HIGH amount of threads - attack will be started with 10000 threads\033[0;0m\n"
+	threads=10000
 fi
 
 rpc="${2:-1000}"
 if ((rpc < 1000));
 then
-	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[0;33m$rpc is too LOW amount of rpc(connections) - attack will be started with 1000 rpc(connections)\033[0;0m\n"
+	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[0;33m$rpc is too LOW amount of rpc(connections) - attack will be started with 1000 rpc\033[0;0m\n"
 	rpc=1000
-elif ((rpc > 2500));
+elif ((rpc > 3000));
 then
-	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[0;33m$rpc is too HIGH amount of rpc(connections) - attack will be started with 5000 rpc(connections)\033[0;0m\n"
-	rpc=2500
+	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[0;33m$rpc is too HIGH amount of rpc(connections) - attack will be started with 3000 rpc\033[0;0m\n"
+	rpc=3000
 fi
 
 debug="${3:-}"
@@ -174,7 +174,7 @@ do
 	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[1;35mStarting our new proxy_finder, next restart in $restart_interval...\033[1;0m"
 	
 	cd ~/proxy_finder
-    	python3.10 finder.py --threads $threads&
+    	python3.10 finder.py&
 	PID1="$!"
 	
 	
