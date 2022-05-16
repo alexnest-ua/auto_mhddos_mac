@@ -41,7 +41,7 @@ curl -LO https://raw.githubusercontent.com/alexnest-ua/auto_mhddos_mac/main/runn
 Далі кожні 5 хвилин воно буде оновлювати список проксі, а кожні 20 хвилин - цілі атаки та перевіряти наявність оновлення (та встановлювати його якщо воно є)  
   
 **!!!УВАГА!!!** runner.sh підтримує наступні параметри (САМЕ У ТАКОМУ ПОРЯДКУ ТА ЛИШЕ У ТАКІЙ КІЛЬКОСТІ(мінімум 2)), але можно і без них:  
-curl -LO https://raw.githubusercontent.com/alexnest-ua/auto_mhddos_mac/main/runner.sh && bash runner.sh [threads] [rpc] [debug] [vpn]  
+`curl -LO https://raw.githubusercontent.com/alexnest-ua/auto_mhddos_mac/main/runner.sh && bash runner.sh [threads] [rpc] [debug] [vpn]`  
 - threads - кількість потоків (але не менше 1000, та не більше 10000)
 - rpc - кількість запитів на проксі перед відправкою на ціль (але не менше 1000, та не більше 3000)
 - debug - можливість дебагу (якщо хочете бачити повний інфу по атаці - у 4-ий параметр додайте --debug)
