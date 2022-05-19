@@ -61,15 +61,6 @@ then
 fi
 
 rpc="${2:-1000}"
-if ((rpc < 1000));
-then
-	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[0;33m$rpc is too LOW amount of rpc(connections) - attack will be started with 1000 rpc\033[0;0m\n"
-	rpc=1000
-elif ((rpc > 3000));
-then
-	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[0;33m$rpc is too HIGH amount of rpc(connections) - attack will be started with 3000 rpc\033[0;0m\n"
-	rpc=3000
-fi
 
 debug="${3:-}"
 if [ "${debug}" != "--debug" ] && [ "${debug}" != "" ] && [ "${debug}" != "--vpn" ];
@@ -162,7 +153,7 @@ do
     	echo -e "python3 runner.py $cmd_line --rpc $rpc -t $threads $vpn $debug"
             
 	cd ~/mhddos_proxy
-    	python3.10 runner.py $cmd_line --rpc $rpc -t $threads $vpn $debug&
+    	python3.10 runner.py $cmd_line -t $threads $vpn $debug&
 	PID="$!"
 	sleep 20
 	
