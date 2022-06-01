@@ -73,10 +73,10 @@ trap 'echo signal received!; kill "${PID}"; wait "${PID}"; ctrl_c' SIGINT SIGTER
 
 function ctrl_c() {
         echo "Exiting..."
-	sleep 1s
+	sleep 1
 	exit
 	echo "Exiting failed - close the window with terminal!!!"
-	sleep 60s
+	sleep 60
 }
 
 # Restarts attacks and update targets list every 20 minutes
