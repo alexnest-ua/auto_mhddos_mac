@@ -73,7 +73,7 @@ trap 'echo signal received!; kill "${PID}"; wait "${PID}"; ctrl_c' SIGINT SIGTER
 
 function ctrl_c() {
         echo "Exiting..."
-	sleep 3s
+	sleep 1s
 	exit
 	echo "Exiting failed - close the window with terminal!!!"
 	sleep 60s
