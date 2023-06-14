@@ -1,9 +1,9 @@
 # Опис auto_mhddos_mac
 
-runner.sh - ПОВНІСТЮ АВТООНОВЛЮВАНИЙ (оновлює цілі та себе) bash-скрипт для Mac-машин, що керує [mhddos_proxy](https://github.com/porthole-ascend-cinnamon/mhddos_proxy) та [proxy_finder](https://github.com/porthole-ascend-cinnamon/proxy_finder)    
-Також він автоматично оновлює не лише свій скрипт та цілі, а й сам скрипт mhddos_proxy та proxy_finder   
+runner.sh - ПОВНІСТЮ АВТООНОВЛЮВАНИЙ (оновлює цілі та себе) bash-скрипт для Mac-машин, що керує [mhddos_proxy](https://github.com/porthole-ascend-cinnamon/mhddos_proxy_releases)    
+Також він автоматично оновлює не лише свій скрипт та цілі, а й сам скрипт mhddos_proxy
 Також скрипт імітує роботу людини (вимикає увесь ДДоС на 1-2 (рандомно) хвилин), щоб дати машині трохи відпочити
-Скрипт розподіляє ваші машини по цілям: https://github.com/alexnest-ua/targets/blob/main/targets_linux (цілі беруться звідси: https://t.me/ddos_separ)  
+Скрипт розподіляє ваші машини по цілям: https://github.com/porthole-ascend-cinnamon/mhddos_proxy_releases (цілі беруться звідси: https://t.me/itarmyofukraine2022)  
   
 [**Варіант для Windows**](https://github.com/alexnest-ua/runner_for_windows)  
 [**Варіант для Linux**](https://github.com/alexnest-ua/auto_mhddos_alexnest/tree/main)  
@@ -14,8 +14,8 @@ runner.sh - ПОВНІСТЮ АВТООНОВЛЮВАНИЙ (оновлює ці
 
 **якщо запускаєте цей скрипт - інші атаки через Python не запускайте, бо при рестарті він вбиває усі процеси старі процеси з mhddos_proxy (щоб старі атаки не накопичувалися)**
 
-Канал, де координуються цілі: https://t.me/ddos_separ (звідти і беруться сюди цілі, тому якщо у вас на Mac запущено цей скрипт - то можете відповчивати, він все зробить за вас)  
-чат де ви можете задати свої питання: https://t.me/+8swDHSe_ROI5MmJi  
+Канал, де координуються цілі: https://t.me/itarmyofukraine2022 (звідти і беруться сюди цілі, тому якщо у вас на Mac запущено цей скрипт - то можете відповчивати, він все зробить за вас)  
+чат де ви можете задати свої питання: https://t.me/+H6PnjkydZX0xNDky
 також можете писати мені в особисті у телеграм, я завжди усім відповідаю: @brainqdead
   
 Туторіал по створенню автоматичних та автономних Linux-серверів: https://auto-ddos.notion.site/dd91326ed30140208383ffedd0f13e5c  
